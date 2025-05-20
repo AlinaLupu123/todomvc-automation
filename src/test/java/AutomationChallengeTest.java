@@ -70,10 +70,12 @@ public class AutomationChallengeTest {
         takeScreenshot(driver, "uncompleted-second-item.png");
         //takeScreenshot(driver, "complete-second-item.png");
 
+        //toggle all complete
         driver.findElement(By.id("toggle-all")).click();
         assertEquals("0 items left!", todoCount.getText());
         takeScreenshot(driver, "toggle-all-complete.png");
 
+        //toggle all incomplete
         driver.findElement(By.id("toggle-all")).click();
         assertEquals("2 items left!", todoCount.getText());
         takeScreenshot(driver, "toggle-all-incomplete.png");
