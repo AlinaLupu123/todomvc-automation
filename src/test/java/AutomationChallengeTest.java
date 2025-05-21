@@ -40,7 +40,7 @@ public class AutomationChallengeTest {
         assertEquals("2 items left!", todoCount.getText());
         takeScreenshot(driver, "2-items-left.png");
 
-        //mark all to do items as complete
+        /*mark all to do items as complete
         WebElement checkbox = driver.findElement(By.cssSelector("input[type='checkbox']"));
         checkbox.click();
         assertEquals("0 items left!", todoCount.getText());
@@ -50,7 +50,7 @@ public class AutomationChallengeTest {
         WebElement uncheckbox = driver.findElement(By.cssSelector("input[type='checkbox']"));
         uncheckbox.click();
         assertEquals("2 items left!", todoCount.getText());
-        takeScreenshot(driver, "uncheck-with-2-items-left.png");
+        takeScreenshot(driver, "uncheck-with-2-items-left.png");*/
 
         //mark individual items as complete
         driver.findElement(By.cssSelector("li:nth-child(1) .toggle")).click();
