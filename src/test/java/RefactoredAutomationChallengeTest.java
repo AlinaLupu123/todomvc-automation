@@ -73,6 +73,14 @@ public class RefactoredAutomationChallengeTest {
 
     }
 
+    @Test
+    public void deleteAnItem() throws Exception {
+        reactPage.clickDeleteItem();
+        assertEquals("1 item left!", reactPage.getCounter());
+        takeScreenshot(driver, "delete-an-item-2.png");
+
+    }
+
     @AfterAll
     static void closeBrowser() {
         driver.quit();

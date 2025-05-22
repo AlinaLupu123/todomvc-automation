@@ -7,8 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,6 +72,25 @@ public class AutomationChallengeTest {
         driver.findElement(By.id("toggle-all")).click();
         assertEquals("2 items left!", todoCount.getText());
         takeScreenshot(driver, "toggle-all-incomplete.png");
+
+        //Delete an item
+        // Locate the item box before hovering and clicking on the destroy button
+        WebElement ItemBox = driver.findElement(By.cssSelector(".todo-list li"));
+        System.out.println(ItemBox.isEnabled());
+        // Hover over the item to make the delete button appear
+        Actions actions = new Actions(driver);
+        actions.moveToElement(ItemBox).perform();
+        // Locate the delete button after the hover
+        WebElement deleteButton = ItemBox.findElement(By.cssSelector(".todo-list li .destroy"));
+        System.out.println(deleteButton.isEnabled());
+        // Wait until the delete button is clickable
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(deleteButton));
+        // Click the delete button
+        deleteButton.click();
+        // Verify the remaining items
+        assertEquals("1 item left!", todoCount.getText()); // Adjust text if needed
+        takeScreenshot(driver, "delete-item.png");
     }
 
     @AfterAll

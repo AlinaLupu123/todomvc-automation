@@ -1,11 +1,10 @@
 package pages;
 
-// in MakersSearchPage.java
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,6 +18,8 @@ public class ReactPage {
     private By counter = (By.className("todo-count"));
     private By toggleAll = (By.id("toggle-all"));
     private By firstItem = (By.cssSelector("li:nth-child(1) .toggle"));
+    private By itemBox = (By.cssSelector(".todo-list li"));
+    private By deleteItem = (By.cssSelector(".todo-list li .destroy"));
 
 
     public ReactPage(WebDriver driver) {
@@ -53,10 +54,13 @@ public class ReactPage {
         toggleButton.click();
     }
 
-    //public void waitForResultsText(String resultsText) {
-    // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    //wait.until(ExpectedConditions.textToBe(searchResultsHeadingBy,resultsText));
-    // }
+    public void clickDeleteItem() {
+        WebElement itemSection = driver.findElement(itemBox);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(itemSection).perform();
+        WebElement deleteButton = driver.findElement(deleteItem);
+        deleteButton.click();
+    }
 }
 
 
