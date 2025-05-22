@@ -18,6 +18,7 @@ public class ReactPage {
     private By toDoList = (By.cssSelector("ul.todo-list li"));
     private By counter = (By.className("todo-count"));
     private By toggleAll = (By.id("toggle-all"));
+    private By firstItem = (By.cssSelector("li:nth-child(1) .toggle"));
 
 
     public ReactPage(WebDriver driver) {
@@ -40,6 +41,11 @@ public class ReactPage {
 
     public String getCounter() {
         return driver.findElement(counter).getText();
+    }
+
+    public void clickFirstItem() {
+        WebElement tickBoxOne = driver.findElement(firstItem);
+        tickBoxOne.click();
     }
 
     public void clickToggleAll() {

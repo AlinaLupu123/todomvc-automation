@@ -1,3 +1,5 @@
+//this is the code before refactoring and putting it into a Page Object Model//
+
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -26,7 +28,7 @@ public class AutomationChallengeTest {
         String pageTitleText = driver.getTitle();
         assertEquals("TodoMVC: React", driver.getTitle());
 
-        //click on the search box, type in Go shopping and enter, then assert the new to do item is there
+        //click on the search box, type in items and enter, then assert the new to do items are there
         driver.findElement(By.id("todo-input")).sendKeys("Go shopping");
         driver.findElement(By.id("todo-input")).sendKeys(Keys.ENTER);
         driver.findElement(By.id("todo-input")).sendKeys("Buy milk");
@@ -40,18 +42,6 @@ public class AutomationChallengeTest {
         assertEquals("2 items left!", todoCount.getText());
         takeScreenshot(driver, "2-items-left.png");
 
-        /*mark all to do items as complete
-        WebElement checkbox = driver.findElement(By.cssSelector("input[type='checkbox']"));
-        checkbox.click();
-        assertEquals("0 items left!", todoCount.getText());
-        takeScreenshot(driver, "0-items-left.png");
-
-        //mark all to do items as incomplete
-        WebElement uncheckbox = driver.findElement(By.cssSelector("input[type='checkbox']"));
-        uncheckbox.click();
-        assertEquals("2 items left!", todoCount.getText());
-        takeScreenshot(driver, "uncheck-with-2-items-left.png");*/
-
         //mark individual items as complete
         driver.findElement(By.cssSelector("li:nth-child(1) .toggle")).click();
         takeScreenshot(driver, "complete-first-item.png");
@@ -59,7 +49,7 @@ public class AutomationChallengeTest {
         driver.findElement(By.cssSelector("li:nth-child(2) .toggle")).click();
         assertEquals("0 items left!", todoCount.getText());
         takeScreenshot(driver, "complete-both-items-individually.png");
-        //takeScreenshot(driver, "complete-second-item.png");
+
 
         //mark individual items as incomplete
         driver.findElement(By.cssSelector("li:nth-child(1) .toggle")).click();
